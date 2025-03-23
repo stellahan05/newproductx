@@ -21,21 +21,19 @@ function saveUnproductiveWebsites() {
 }
 
 document.getElementById('startPomodoro').addEventListener('click', () => {
-    const button = document.getElementById('startPomodoro');
-    if (button.innerText === 'Start Pomodoro') {
-        startTimer();
-        document.getElementById('mascot').style.display = 'block';
-        button.innerText = 'Close Pomodoro';
-    } else {
-        clearInterval(timer);
-        document.getElementById('mascot').style.display = 'none';
-        button.innerText = 'Start Pomodoro';
-        document.getElementById('status').innerText = 'Status: Waiting...';
-        document.getElementById('timer').innerText = 'Time: 25:00';
-        studyTime = 25 * 60;
-        breakTime = 5 * 60;
-        isStudySession = true;
-    }
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        if (tabs.length === 0) return;
+
+        chrome.tabs.sendMessage(tabs[0].id, { action: 'toggleMascot' }, (response) => {
+            if (chrome.runtime.lastError) {
+                console.error("Content script not found. Injecting now...");
+                chrome.scripting.executeScript({
+                    target: { tabId: tabs[0].id },
+                    files: ["content.js"]
+                });
+            }
+        });
+    });
 });
 
 document.getElementById('addWebsite').addEventListener('click', () => {
