@@ -9,8 +9,9 @@
             right: 10px;
             width: 100px;
             height: 100px;
-            background-image: url('mascot.png'); /* Replace with your mascot image */
+            background-image: url('mascot.png');
             animation: float 3s infinite;
+            display: none;
         }
 
         @keyframes float {
@@ -24,6 +25,12 @@
     <h1>Buddy</h1>
     <button id="startPomodoro">Start Pomodoro</button>
     <p id="status">Status: Waiting...</p>
+    <p id="timer">Time: 25:00</p>
     <div id="mascot"></div>
+
+    <h2>Blocked Websites</h2>
+    <input type="text" id="websiteInput" placeholder="Enter website URL">
+    <button id="addWebsite">Add Website</button>
+    <ul id="websiteList"></ul>
 </body>
 </html>
