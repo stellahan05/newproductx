@@ -1,12 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Focus Mascot</title>
+    <title>Buddy</title>
+    <style>
+        #mascot {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 100px;
+            height: 100px;
+            background-image: url('mascot.png'); /* Replace with your mascot image */
+            animation: float 3s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
     <script src="popup.js" defer></script>
 </head>
 <body>
-    <h1>🐻 Focus Mascot</h1>
+    <h1>Buddy</h1>
     <button id="startPomodoro">Start Pomodoro</button>
     <p id="status">Status: Waiting...</p>
+    <div id="mascot"></div>
 </body>
 </html>
